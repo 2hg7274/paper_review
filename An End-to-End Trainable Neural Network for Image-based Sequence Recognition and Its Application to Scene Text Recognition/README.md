@@ -34,7 +34,7 @@ convolutional, max-pooling layer 및 elementwise activation function은 로컬 �
 <img width="163" alt="image" src="https://user-images.githubusercontent.com/94213374/214226038-4be4a61f-4113-4ae2-8c57-47dc50120cc0.png">  
 
 ## Sequence Labeling  
-Deep bidirectional recurrent neural network은 순환 계층으로 convolutional layer의 맨 위에 구축된다. Recurrent layer는 feature sequence $x = \left\{x_{1}, \cdots, x_{T} \right\}$ 에서 각 프레임 $x_{T}$ 에 대한 레이블 분포 $y_{t}$ 를 예측한다.  
+Deep bidirectional recurrent neural network은 순환 계층으로 convolutional layer의 맨 위에 구축된다. Recurrent layer는 feature sequence $x = \lbrace x_{1}, \cdots, x_{T} \rbrace$ 에서 각 프레임 $x_{T}$ 에 대한 레이블 분포 $y_{t}$ 를 예측한다.  
 
 Recurrent layer의 장점은 세 가지이다.  
 1. RNN은 시퀀스 내에 context 정보를 캡쳐하는 강력한 기능을 가지고 있다. 이미지 기반 시퀀스 인식에 상황별 단서를 사용하는 것이 각 기호를 독립적으로 처리하는 것보다 더 안정적이고 유용하다. 장면 텍스트 인식을 예로 들면 와이드 문자는 완전히 설명하기 위해 여러 연속 프레임이 필요할 수 있다. 게다가 일부 모호한 문자는 문맥을 관찰할 때 구별하기가 더 쉽다.  
