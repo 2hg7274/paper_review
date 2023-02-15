@@ -16,4 +16,27 @@ Transformer의 Input값은 1차원 시퀀스이다. 따라서, 고정된 크기�
 
 ($N = HW / P^{2}$ 로 계산되며, P는 하이퍼파라미터이다.)  
 
-이렇게 1차원으로 바꾼 이미지를 Transformer에 사용할 수 있는 D차원의 벡터로 바꿔준다. 이걸로 Trnasofrmer Imput 
+이렇게 1차원으로 바꾼 이미지를 Transformer에 사용할 수 있는 D차원의 벡터로 바꿔준다. 이걸로 Transformer Input 형식에 맞춰서 이미지를 바꾼다.  
+
+Hybrid Architecture로 CNN의 feature map을 Input값으로 사용할 수도 있다.  
+
+> Inductive bias  
+
+CNN(Locality 가정)이나 RNN(Sequentiality 가정)경우, Global한 영역의 처리는 어렵다.  
+ViT는 일반적인 CNN과 다르게 공간에 대한 Inductive bias가 없다. 그러므로 ViT는 더 많은 데이터를 통해 원초적인 관계를 Robust하게 학습시켜야 한다.  
+- ViT는 MLP Layer에서만 Local 및 Translation Equivariance 하다.  
+- Self-Attention 매커니즘은 Global  
+
+> Hybrid Architecture  
+
+Image Patch의 대안으로, CNN의 feature map의 sequence를 사용할 수 있다.  
+- CNN의 feature는 Spatial size가 1 X 1이 될 수 있음.  
+- CNN으로 feature 추출 -> Flatten -> Embedding Projection 적용  
+
+
+## ViT 사용에 유의할 점  
+ViT도 Transformer답게 많은 데이터로 Pre-Training하지 않으면, 좋은 성능을 기대하기 어렵다. 
+Fine-Tuning 시에는 Pre-Training head를 제거하고 0으로 초기화된 D x K 차원의 feedforward layer를 연결하여 사용하면 된다.  
+여기서 K는 우리가 찾고자 하는 Task의 Class 개수이다.   
+
+참고 사이트: [https://kmhana.tistory.com/27](https://kmhana.tistory.com/27)
